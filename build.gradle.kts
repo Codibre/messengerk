@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.serialization") version "1.8.10"
     id("org.jetbrains.dokka") version "1.8.10"
+    `maven-publish`
 }
 
 group = "io.codibre"
@@ -48,4 +49,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            group = "io.codibre"
+            version = "0.0.2"
+            from(components["kotlin"])
+        }
+    }
 }
