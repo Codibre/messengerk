@@ -1,4 +1,3 @@
-
 plugins {
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.serialization") version "1.8.10"
@@ -7,7 +6,7 @@ plugins {
 }
 
 group = "io.codibre"
-version = "0.0.1"
+version = "0.0.3"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -55,7 +54,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             group = "io.codibre"
-            version = "0.0.2"
+            version = "0.0.3"
             from(components["kotlin"])
         }
     }
