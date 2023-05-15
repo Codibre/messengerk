@@ -1,5 +1,6 @@
 package io.codibre.messengerk.contracts
 
+import io.codibre.messengerk.Envelope
 import io.codibre.messengerk.StampCollection
 import io.codibre.messengerk.stamp.Stamp
 
@@ -19,12 +20,12 @@ interface MessageBus {
      * @param stamps Optional list of stamps to be added to the envelope.
      * @return Result object containing the dispatched envelope.
      */
-    fun dispatch(message: Any, vararg stamps: Stamp): Result<io.codibre.messengerk.Envelope<Any>> {
-        var envelope = if (message is io.codibre.messengerk.Envelope<*>) {
+    fun dispatch(message: Any, vararg stamps: Stamp): Result<Envelope<Any>> {
+        var envelope = if (message is Envelope<*>) {
             @Suppress("UNCHECKED_CAST")
-            message as io.codibre.messengerk.Envelope<Any>
+            message as Envelope<Any>
         } else {
-            io.codibre.messengerk.Envelope(message, StampCollection.buildFromList(stamps.toList()))
+            Envelope(message, StampCollection.buildFromList(stamps.toList()))
         }
 
         stamps.forEach { stamp ->
@@ -40,5 +41,5 @@ interface MessageBus {
      * @param envelope The envelope to be dispatched.
      * @return Result object containing the dispatched envelope.
      */
-    fun dispatch(envelope: io.codibre.messengerk.Envelope<Any>): Result<io.codibre.messengerk.Envelope<Any>>
+    fun dispatch(envelope: Envelope<Any>): Result<Envelope<Any>>
 }

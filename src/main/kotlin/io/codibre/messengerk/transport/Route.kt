@@ -1,5 +1,7 @@
 package io.codibre.messengerk.transport
 
+import io.codibre.messengerk.Channel
+
 /**
  * Represents a route for message delivery, associating a channel with a transport.
  *
@@ -7,6 +9,6 @@ package io.codibre.messengerk.transport
  * @property transport the transport responsible for delivering messages
  */
 data class Route(
-    val channel: io.codibre.messengerk.Channel,
+    val channel: Channel,
     val transport: Transport
 )

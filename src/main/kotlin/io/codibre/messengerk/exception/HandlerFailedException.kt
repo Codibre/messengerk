@@ -1,6 +1,8 @@
 package io.codibre.messengerk.exception
 
+import io.codibre.messengerk.Envelope
+
 class HandlerFailedException(
-    val envelope: io.codibre.messengerk.Envelope<Any>,
+    val envelope: Envelope<Any>,
     val exceptions: Map<String, Throwable>
 ) : Throwable("Handling of ${envelope.message::class.qualifiedName} failed: ${exceptions.values}")

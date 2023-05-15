@@ -1,5 +1,6 @@
 package io.codibre.messengerk.middleware
 
+import io.codibre.messengerk.Envelope
 import io.codibre.messengerk.MiddlewareStack
 import io.codibre.messengerk.contracts.Middleware
 import io.codibre.messengerk.stamp.KeyStamp
@@ -35,9 +36,9 @@ class SendMessageMiddleware(
      * @throws IllegalArgumentException if the message type does not have a corresponding route and no default route is available.
      */
     override fun handle(
-        envelope: io.codibre.messengerk.Envelope<Any>,
+        envelope: Envelope<Any>,
         stack: MiddlewareStack
-    ): io.codibre.messengerk.Envelope<Any> {
+    ): Envelope<Any> {
         val messageType = envelope.message::class.qualifiedName ?: throw IllegalArgumentException("Envelope has no message type")
 
         if (envelope.contains<ReceivedStamp>()) {
@@ -51,6 +52,6 @@ class SendMessageMiddleware(
         val sentEnvelope = envelope.with(SentStamp(route.channel.name, route.transport.name))
 
         @Suppress("UNCHECKED_CAST")
-        return route.transport.send(route.channel, sentEnvelope, keyStamp?.key ?: UUID.randomUUID().toString()) as io.codibre.messengerk.Envelope<Any>
+        return route.transport.send(route.channel, sentEnvelope, keyStamp?.key ?: UUID.randomUUID().toString()) as Envelope<Any>
     }
 }

@@ -1,5 +1,6 @@
 package io.codibre.messengerk.middleware
 
+import io.codibre.messengerk.Envelope
 import io.codibre.messengerk.MiddlewareStack
 import io.codibre.messengerk.contracts.Middleware
 import io.codibre.messengerk.exception.HandlerFailedException
@@ -38,10 +39,10 @@ class HandleMessageMiddleware(
      * @throws NoHandlerForMessageException If no handlers are found for the message type and `allowNoHandlers` is false.
      * @throws HandlerFailedException If any exceptions occurred during handler invocations.
      */
-    override fun handle(envelope: io.codibre.messengerk.Envelope<Any>, stack: MiddlewareStack): io.codibre.messengerk.Envelope<Any> {
+    override fun handle(envelope: Envelope<Any>, stack: MiddlewareStack): Envelope<Any> {
         val exceptions = mutableMapOf<String, Throwable>()
         val handlers = handlerLocator.getHandlers(envelope)
-        var finalEnvelope: io.codibre.messengerk.Envelope<Any> = envelope.copy()
+        var finalEnvelope: Envelope<Any> = envelope.copy()
 
         // Order handlers by priority
         val sortedHandlers = handlers.sortedBy { handlerDescriptor ->
@@ -95,7 +96,7 @@ class HandleMessageMiddleware(
      * @return `true` if the message has already been handled by the handler, `false` otherwise.
      */
     private fun messageHasAlreadyBeenHandled(
-        envelope: io.codibre.messengerk.Envelope<Any>,
+        envelope: Envelope<Any>,
         handlerDescriptor: HandlerDescriptor
     ): Boolean {
         for (handledStamp in envelope.allOf<HandledStamp>()) {

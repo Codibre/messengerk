@@ -1,5 +1,6 @@
 package io.codibre.messengerk.transport.memory
 
+import io.codibre.messengerk.Channel
 import io.codibre.messengerk.Envelope
 import io.codibre.messengerk.ReceiverWorker
 import io.codibre.messengerk.serializer.JacksonSerializer
@@ -55,7 +56,7 @@ class InMemoryTransport(
      * @param key an optional routing key
      * @return the sent [Envelope] with the [TransportMessageIdStamp] added to it
      */
-    override fun send(channel: io.codibre.messengerk.Channel, envelope: Envelope<*>, key: String?): Envelope<*> {
+    override fun send(channel: Channel, envelope: Envelope<*>, key: String?): Envelope<*> {
         val id = ++messageId
         val newEnvelope = envelope.with(TransportMessageIdStamp(id))
         val encodedEnvelope = encode(newEnvelope)
@@ -72,7 +73,7 @@ class InMemoryTransport(
      * @param channel the channel to receive messages from
      * @return a list of [Envelope]s
      */
-    override suspend fun receive(channel: io.codibre.messengerk.Channel): List<Envelope<Any>> {
+    override suspend fun receive(channel: Channel): List<Envelope<Any>> {
         return decode(queue)
     }
 
@@ -82,7 +83,7 @@ class InMemoryTransport(
      * @param channel the channel to subscribe to
      * @return an empty map
      */
-    override fun subscribe(channel: io.codibre.messengerk.Channel): Map<io.codibre.messengerk.Channel, List<ReceiverWorker>> {
+    override fun subscribe(channel: Channel): Map<Channel, List<ReceiverWorker>> {
         return mapOf()
     }
 

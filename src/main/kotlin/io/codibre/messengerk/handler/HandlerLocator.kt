@@ -1,5 +1,7 @@
 package io.codibre.messengerk.handler
 
+import io.codibre.messengerk.Envelope
+
 /**
  * Implementation of the [HandlerLocator] interface that stores and retrieves handler descriptors based on message types.
  *
@@ -22,7 +24,7 @@ class HandlerLocator(
      * @return The list of handler descriptors for the message type.
      * @throws Exception if the envelope has no message.
      */
-    fun getHandlers(envelope: io.codibre.messengerk.Envelope<*>): List<HandlerDescriptor> {
+    fun getHandlers(envelope: Envelope<*>): List<HandlerDescriptor> {
         if (envelope.message == null) {
             throw Exception("Envelope has no message")
         }

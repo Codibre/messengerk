@@ -1,5 +1,7 @@
 package io.codibre.messengerk.transport.sync
 
+import io.codibre.messengerk.Channel
+import io.codibre.messengerk.Envelope
 import io.codibre.messengerk.MessageBusLocator
 import io.codibre.messengerk.ReceiverWorker
 import io.codibre.messengerk.stamp.ReceivedStamp
@@ -25,7 +27,7 @@ class SyncTransport(
      * @param channel the channel to subscribe to
      * @return an empty map indicating no receivers are registered
      */
-    override fun subscribe(channel: io.codibre.messengerk.Channel): Map<io.codibre.messengerk.Channel, List<ReceiverWorker>> {
+    override fun subscribe(channel: Channel): Map<Channel, List<ReceiverWorker>> {
         return emptyMap()
     }
 
@@ -44,7 +46,7 @@ class SyncTransport(
      * @param key the optional routing key (not used in this implementation)
      * @return the envelope after it has been dispatched by the message bus
      */
-    override fun send(channel: io.codibre.messengerk.Channel, envelope: io.codibre.messengerk.Envelope<*>, key: String?): io.codibre.messengerk.Envelope<Any> =
+    override fun send(channel: Channel, envelope: Envelope<*>, key: String?): Envelope<Any> =
         busLocator().dispatch(envelope, ReceivedStamp(transportName = name)).getOrThrow()
 
     /**
@@ -53,7 +55,7 @@ class SyncTransport(
      * @param channel the channel to receive messages from
      * @return an empty list indicating no messages are received
      */
-    override suspend fun receive(channel: io.codibre.messengerk.Channel): List<io.codibre.messengerk.Envelope<Any>> = emptyList()
+    override suspend fun receive(channel: Channel): List<Envelope<Any>> = emptyList()
 
     /**
      * Acknowledges the specified envelope.
@@ -61,14 +63,14 @@ class SyncTransport(
      * @param envelope the envelope to acknowledge
      * @return `true` indicating successful acknowledgement
      */
-    override fun ack(envelope: io.codibre.messengerk.Envelope<*>): Boolean = true
+    override fun ack(envelope: Envelope<*>): Boolean = true
 
     /**
      * Rejects the specified envelope.
      *
      * @param envelope the envelope to reject
      */
-    override fun reject(envelope: io.codibre.messengerk.Envelope<Any>) {
+    override fun reject(envelope: Envelope<Any>) {
         // Not implemented in this synchronous transport
     }
 }
