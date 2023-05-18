@@ -1,5 +1,5 @@
 [versions]
-application = "1.0.0-alpha"
+application = "1.0.1-alpha"
 group = "com.github.codibre.messengerk"
 spring-boot = "3.0.6"
 spring-context = "6.0.9"
