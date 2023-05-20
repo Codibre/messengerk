@@ -1,0 +1,3 @@
+com.github.codibre.messengerk.messengerk_spring_boot_starter.MessengerAutoConfiguration
+com.github.codibre.messengerk.messengerk_spring_boot_starter.WorkerApplicationRunner
+com.github.codibre.messengerk.messengerk_spring_boot_starter.MessengerProperties

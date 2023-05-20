@@ -1,15 +1,24 @@
 [versions]
-application = "1.0.1-alpha"
+application = "1.0.2-alpha"
 group = "com.github.codibre.messengerk"
+
+# Spring Framework
 spring-boot = "3.0.6"
 spring-context = "6.0.9"
+spring-autoconfigure = "3.1.0"
+spring-dependency-management = "1.1.0"
+
+# Kotlin and Coroutines
 kotlin = "1.8.21"
-dokka = "1.8.10"
 kotlinx-serialization-json-jvm = "1.5.1"
 kotlinx-coroutines-core = "1.7.1"
+
+# Jackson and Kafka
 jackson = "2.15.1"
 kafka-clients = "3.4.0"
-spring-dependency-management = "1.1.0"
+
+# Other Libraries
+dokka = "1.8.10"
 snake-yaml = "2.0"
 javax = "1.3.2"
 json-smart = "2.4.10"
@@ -18,25 +27,36 @@ kotest = "5.6.2"
 mockito = "5.3.1"
 
 [libraries]
+# Spring Framework
 spring-context = { module = "org.springframework:spring-context", version.ref = "spring-context" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "kotlinx-serialization-json-jvm" }
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
-kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-clients" }
-spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
-snake-yaml = { module = "org.yaml:snakeyaml", version.ref = "snake-yaml" }
+spring-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure", version.ref = "spring-autoconfigure" }
+spring-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
 spring-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+
+# Kotlin and Coroutines
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "kotlinx-serialization-json-jvm" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
+
+# Jackson and Kafka
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-clients" }
+
+# Other Libraries
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+snake-yaml = { module = "org.yaml:snakeyaml", version.ref = "snake-yaml" }
 javax-annotation-api = { module = "javax.annotation:javax.annotation-api", version.ref = "javax" }
 json-smart = { module = "net.minidev:json-smart", version.ref = "json-smart" }
 jvm-gradle-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-kotlin-coroutiunes-core = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
+
+# Testing
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+
 
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

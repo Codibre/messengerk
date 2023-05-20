@@ -3,5 +3,6 @@ rootProject.name = "messengerk"
 include(
     "core",
     "kafka-transport",
-    "spring-boot-starter"
+    "kafka-transport-spring-boot-starter",
+    "messengerk-spring-boot-starter"
 )
