@@ -61,8 +61,6 @@ open class MessengerAutoConfiguration : BeanDefinitionRegistryPostProcessor, App
     private fun bindProperties(environment: Environment) {
         val binder = Binder.get(environment)
         val properties = binder.bind("messenger", MessengerProperties::class.java).orElse(MessengerProperties())
-
-        // validate the properties object
         val violations = validator?.validate(properties)
         if (!violations.isNullOrEmpty()) {
             throw MessengerConfigValidationException(ConstraintViolationException(violations))

@@ -1,6 +1,7 @@
 plugins {
     id("com.github.codibre.common-conventions")
     alias(libs.plugins.spring.dependency.management)
+    kotlin("kapt")
 }
 
 dependencies {
@@ -10,8 +11,9 @@ dependencies {
     // spring
     implementation(libs.spring.context)
     implementation(libs.snake.yaml)
-    kapt(libs.spring.configuration.processor)
     implementation(libs.spring.starter.validation)
+    annotationProcessor(libs.spring.configuration.processor)
+    kapt(libs.spring.configuration.processor)
 
     // javax
     implementation(libs.javax.annotation.api)
