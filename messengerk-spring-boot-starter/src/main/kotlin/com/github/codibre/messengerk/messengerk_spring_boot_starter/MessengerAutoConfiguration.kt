@@ -28,7 +28,7 @@ import kotlin.collections.set
 
 
 /**
- * Autoconfiguration class for Messenger library
+ * Autoconfiguration class for MessengerK library
  *
  * This class has the goal of starting up the beans necessary for spring boot
  *

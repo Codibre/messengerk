@@ -1,5 +1,5 @@
 [versions]
-application = "1.0.2-alpha"
+application = "1.0.3-alpha"
 group = "com.github.codibre.messengerk"
 
 # Spring Framework

@@ -12,7 +12,6 @@ dependencies {
     implementation(libs.spring.context)
     implementation(libs.snake.yaml)
     implementation(libs.spring.starter.validation)
-    annotationProcessor(libs.spring.configuration.processor)
     kapt(libs.spring.configuration.processor)
 
     // javax
