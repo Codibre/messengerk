@@ -27,7 +27,7 @@ open class AnnotationFinder {
                     try {
                         if (handler is Method) {
                             val handlerCallable: MessageHandler = {
-                                val bean = context.getBean(handler::class.java)
+                                val bean = context.getBean(Class.forName(classes.key))
                                 handler.invoke(bean, it)
                             }
 
